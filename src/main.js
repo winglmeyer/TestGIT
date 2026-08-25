@@ -3,7 +3,7 @@ import heroImg from './assets/hero.png'
 import javascriptLogo from './assets/javascript.svg'
 import viteLogo from './assets/vite.svg'
 import { setupCounter } from './counter.js'
-import { daysUntil } from './math.js'
+import { daysUntil, formatTime } from './math.js'
 
 document.querySelector('#app').innerHTML = `
 <section id="center">
@@ -20,6 +20,11 @@ document.querySelector('#app').innerHTML = `
 </section>
 
 <p id="countdown"></p>
+
+<section id="clock">
+  <button id="show-time" type="button">Show current time</button>
+  <p id="time-display"></p>
+</section>
 
 <div class="ticks"></div>
 
@@ -65,3 +70,7 @@ setupCounter(document.querySelector('#counter'))
 const newYear = new Date(new Date().getFullYear() + 1, 0, 1)
 document.querySelector('#countdown').textContent =
   `${daysUntil(newYear)} days until next New Year`
+
+document.querySelector('#show-time').addEventListener('click', () => {
+  document.querySelector('#time-display').textContent = formatTime()
+})

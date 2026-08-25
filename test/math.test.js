@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { add, daysUntil } from '../src/math.js'
+import { add, daysUntil, formatTime } from '../src/math.js'
 
 describe('add', () => {
   it('adds two positive numbers', () => {
@@ -21,5 +21,17 @@ describe('daysUntil', () => {
     const from = new Date('2026-08-25T00:00:00Z')
     const target = new Date('2026-08-30T00:00:00Z')
     expect(daysUntil(target, from)).toBe(5)
+  })
+})
+
+describe('formatTime', () => {
+  it('pads hours, minutes, and seconds to two digits', () => {
+    const date = new Date(2026, 0, 1, 9, 5, 3)
+    expect(formatTime(date)).toBe('09:05:03')
+  })
+
+  it('formats times without leading zeros correctly', () => {
+    const date = new Date(2026, 0, 1, 23, 59, 9)
+    expect(formatTime(date)).toBe('23:59:09')
   })
 })
